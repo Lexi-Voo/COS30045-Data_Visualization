@@ -12,8 +12,12 @@ function LogoHome() {
 // Highlight the active navigation link
 function highlightNavBar() {
   const currentPage = window.location.pathname.split("/").pop();
-  const navLinks = document.querySelectorAll("nav a");
 
+  if (currentPage === "" || currentPage === "/") {
+    currentPage = "index.html";
+  }
+
+  const navLinks = document.querySelectorAll("nav a");
   navLinks.forEach(link => {
     if (link.getAttribute("href") === currentPage) {
       link.classList.add("active");
