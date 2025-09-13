@@ -1,4 +1,3 @@
-
 // Make the logo click and back to home
 function LogoHome() {
   const logo = document.querySelector(".logo");
@@ -9,25 +8,17 @@ function LogoHome() {
   }
 }
 
-// Highlight the active navigation link
-function highlightNavBar() {
-  const currentPage = window.location.pathname.split("/").pop();
-
-  if (currentPage === "" || currentPage === "/") {
-    currentPage = "index.html";
-  }
-
-  const navLinks = document.querySelectorAll("nav a");
-  navLinks.forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active");
+// Highlight the active navigation link (IIFE style)
+(function setActiveNav() {
+  const path = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll("nav a").forEach(a => {
+    if (a.getAttribute("href") === path) {
+      a.classList.add("active");
     }
   });
-}
+})();
 
 // Run when the page loads
 document.addEventListener("DOMContentLoaded", () => {
-  highlightNavBar();
   LogoHome();
 });
-
